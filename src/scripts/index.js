@@ -45,17 +45,21 @@ ready(() => {
   //   duration: 300,
   // });
 
-  function initTabs() {
+  function initTabs(initial_id = 1) {
     const tabs = $$('.tabs');
     tabs.forEach((tab_container) => {
+      tab_container.dataset.tabSelected = initial_id.toString();
+
       let labels = $$('.tabs__label', tab_container);
+
       labels.forEach((label) => {
         label.onclick = function () {
-          labels.forEach((l) => (l.style.borderBottom = ''));
-          this.style.borderBottom = 'none';
-          let corresponding_tab = $(`[data-tab="${this.dataset.tabLabel}"]`, tab_container);
-          $$('.tabs__tab', tab_container).forEach((t) => (t.style.display = ''));
-          corresponding_tab.style.display = 'block';
+          let id = this.dataset.tabLabel;
+          tab_container.dataset.tabSelected = id;
+
+          // let corresponding_tab = $(`[data-tab="${this.dataset.tabLabel}"]`, tab_container);
+          // $$('.tabs__tab', tab_container).forEach((t) => (t.style.display = ''));
+          // corresponding_tab.style.display = 'block';
         };
       });
     });

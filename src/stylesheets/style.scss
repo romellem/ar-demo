@@ -5,8 +5,15 @@
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 4px;
 
-  border: 1px solid black;
+  padding: 0.5em;
   border-top: none;
+
+  .tabs__tab--blue & {
+    background: cornflowerblue;
+  }
+  .tabs__tab--pink & {
+    background: salmon;
+  }
 }
 
 .cell {
@@ -18,10 +25,10 @@
   position: relative;
 
   .tabs__tab--blue & {
-    background: cornflowerblue;
+    background: mix(cornflowerblue, white, 70%);
   }
   .tabs__tab--pink & {
-    background: pink;
+    background: mix(salmon, white, 70%);
   }
 }
 
@@ -38,21 +45,36 @@
   &__label {
     padding: 0.5em;
     cursor: pointer;
-    border-bottom: 1px solid black;
+    box-shadow: inset 0px -10px 4px -10px rgba(0, 0, 0, 0.5);
+    color: darkslategray;
 
     &--blue {
       background: cornflowerblue;
     }
     &--pink {
-      background: pink;
+      background: salmon;
     }
 
     & + & {
       margin-left: 4px;
     }
+
+    @for $i from 1 through 10 {
+      [data-tab-selected="#{$i}"] &:nth-child(#{$i}) {
+        box-shadow: none;
+        color: black;
+      }
+    }
   }
+
   &__tab {
     display: none;
+
+    @for $i from 1 through 10 {
+      [data-tab-selected="#{$i}"] &:nth-child(#{$i + 1}) {
+        display: block;
+      }
+    }
   }
 }
 
