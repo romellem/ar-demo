@@ -73,8 +73,11 @@ ready(() => {
         let preview_buttons = $$('.ar__preview-button', cell);
         preview_buttons.forEach((button) => {
           button.addEventListener('click', function (e) {
+            let ars = $$('.ar');
+            let ar_id = this.dataset.ar;
             let parent = button.closest('.ar');
-            parent.classList.add('ar--show-content');
+            ars.forEach(el => el.removeAttribute('data-ar-selected'));
+            parent.setAttribute('data-ar-selected', ar_id);
           });
         });
       });
