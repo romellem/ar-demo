@@ -57,25 +57,27 @@ ready(() => {
       };
 
       const labels = $$('.tabs__label', tab);
-      const grid = $('.grid', tab);
-      const { unwrapGrid, forceGridAnimation } = wrapGrid(grid, { duration: 500 });
-      wrapped_grids.push({
-        grid,
-        unwrapGrid,
-        forceGridAnimation,
-      });
-
-      const rewrapGrid = (grid) => {
-        let [wrapped_grid_reference] = wrapped_grids.filter((ref) => ref.grid === grid);
-        const { unwrapGrid, forceGridAnimation } = wrapGrid(grid, { duration: 500 });
-        wrapped_grid_reference.unwrapGrid = unwrapGrid;
-        wrapped_grid_reference.forceGridAnimation = forceGridAnimation;
-      };
 
       labels.forEach((label) => {
+        const tab_label_id = label.dataset.tabLabel;
+
+        const grid = $(`[data-tab="${tab_label_id}"] .grid`, tab);
+        const { unwrapGrid, forceGridAnimation } = wrapGrid(grid, { duration: 500 });
+        wrapped_grids.push({
+          grid,
+          unwrapGrid,
+          forceGridAnimation,
+        });
+
+        const rewrapGrid = (grid) => {
+          let [wrapped_grid_reference] = wrapped_grids.filter((ref) => ref.grid === grid);
+          const { unwrapGrid, forceGridAnimation } = wrapGrid(grid, { duration: 500 });
+          wrapped_grid_reference.unwrapGrid = unwrapGrid;
+          wrapped_grid_reference.forceGridAnimation = forceGridAnimation;
+        };
+
         label.onclick = function () {
-          const id = this.dataset.tabLabel;
-          tab.dataset.tabSelected = id;
+          tab.dataset.tabSelected = tab_label_id;
 
           tab.unwrapAllGrids();
           rewrapGrid(grid);
