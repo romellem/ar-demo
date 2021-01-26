@@ -98,6 +98,7 @@
       [data-tab-selected='#{$i}'] &:nth-child(#{$i}) {
         box-shadow: none;
         color: black;
+        cursor: auto;
       }
     }
   }

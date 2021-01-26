@@ -77,10 +77,13 @@ ready(() => {
         };
 
         label.onclick = function () {
-          tab.dataset.tabSelected = tab_label_id;
+          // Don't rewrap if we're already selected
+          if (!tab.dataset.tabSelected !== tab_label_id) {
+            tab.dataset.tabSelected = tab_label_id;
 
-          tab.unwrapAllGrids();
-          rewrapGrid(grid);
+            tab.unwrapAllGrids();
+            rewrapGrid(grid);
+          }
         };
       });
     });
