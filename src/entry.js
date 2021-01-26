@@ -47,15 +47,38 @@ ready(() => {
 
   function initTabs(initial_id = 1) {
     const tabs = $$('.tabs');
-    tabs.forEach((tab_container) => {
-      tab_container.dataset.tabSelected = initial_id.toString();
+    tabs.forEach((tab) => {
+      tab.dataset.tabSelected = initial_id.toString();
+      const wrapped_grids = [];
+      tab.unwrapAllGrids = () => {
+        wrapped_grids.forEach((wrapped_grid) => {
+          wrapped_grid?.unwrapGrid?.();
+        });
+      };
 
-      let labels = $$('.tabs__label', tab_container);
+      const labels = $$('.tabs__label', tab);
+      const grid = $('.grid', tab);
+      const { unwrapGrid, forceGridAnimation } = wrapGrid(grid, { duration: 500 });
+      wrapped_grids.push({
+        grid,
+        unwrapGrid,
+        forceGridAnimation,
+      });
+
+      const rewrapGrid = (grid) => {
+        let [wrapped_grid_reference] = wrapped_grids.filter((ref) => ref.grid === grid);
+        const { unwrapGrid, forceGridAnimation } = wrapGrid(grid, { duration: 500 });
+        wrapped_grid_reference.unwrapGrid = unwrapGrid;
+        wrapped_grid_reference.forceGridAnimation = forceGridAnimation;
+      };
 
       labels.forEach((label) => {
         label.onclick = function () {
-          let id = this.dataset.tabLabel;
-          tab_container.dataset.tabSelected = id;
+          const id = this.dataset.tabLabel;
+          tab.dataset.tabSelected = id;
+
+          tab.unwrapAllGrids();
+          rewrapGrid(grid);
         };
       });
     });
@@ -66,8 +89,6 @@ ready(() => {
   function wrapGrids() {
     const grids = $$('.grid');
     grids.forEach((grid) => {
-      wrapGrid(grid, { duration: 500 });
-
       const cells = $$('.cell', grid);
       cells.forEach((cell) => {
         let preview_buttons = $$('.ar__preview-button', cell);
@@ -76,7 +97,7 @@ ready(() => {
             let ars = $$('.ar');
             let ar_id = this.dataset.ar;
             let parent_ar = button.closest('.ar');
-            ars.forEach(el => el.removeAttribute('data-ar-selected'));
+            ars.forEach((el) => el.removeAttribute('data-ar-selected'));
             parent_ar.setAttribute('data-ar-selected', ar_id);
 
             // Animate cell

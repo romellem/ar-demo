@@ -124,6 +124,7 @@ module.exports = {
       use: [{ loader: 'css-loader', options: { minimize: isProd } }],
     }),
   ].concat(isProd ? prodPlugins : []),
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: buildDir,
     open: true,
