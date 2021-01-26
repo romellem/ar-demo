@@ -12,6 +12,25 @@ function ready(fn) {
   }
 }
 
+/**
+ * @param {Element} element 
+ * @param {String} event_type 
+ * @param {Function} callback 
+ * @returns {Function} Returns a 'destroy' function to immediately remove the event listener
+ */
+const once = (element, event_type, callback) => {
+  // Purposefuly don't use an arrow function so `this` can get binded correctly
+  const callbackWithRemove = function (event) {
+    element.removeEventListener(event_type, callbackWithRemove);
+    callback.call(this, event);
+  };
+  element.addEventListener(event_type, callbackWithRemove);
+
+  // Returns a 'destroy' function that when run, immediately removes the event.
+  const destroy = () => element.removeEventListener(event_type, callbackWithRemove);
+  return destroy;
+};
+
 ready(() => {
   const $ = (s, c) => (c ? c.querySelector(s) : document.querySelector(s));
   const $$ = (s, c) => (c ? c.querySelectorAll(s) : document.querySelectorAll(s));
@@ -116,8 +135,28 @@ ready(() => {
         card_flip_buttons.forEach((button) => {
           let parent_card = button.closest('.card');
           button.onclick = function () {
+            // Fix height
+            const parent_card_rect = parent_card.getBoundingClientRect();
+            parent_card.style.height = `${parent_card_rect.height}px`;
+
+            // Start rotation
             parent_card.classList.toggle('card--selected');
             parent_card.dataset.cardFlippedId = button.dataset.cardFlipId;
+
+            // Force a reflow to start the transition
+            void parent_card.offsetTop;
+
+            // Set height to card selection
+            const card_selected = $(
+              `.card__selection[data-grade-id="${button.dataset.cardFlipId}"]`,
+              parent_card,
+            );
+            const card_selected_rect = card_selected.getBoundingClientRect();
+            parent_card.style.height = `${card_selected_rect.height}px`;
+
+            /**
+             * @todo handle resizes
+             */
           };
         });
       });
