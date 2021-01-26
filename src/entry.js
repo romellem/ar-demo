@@ -111,6 +111,15 @@ ready(() => {
             parent_cell.classList.add('cell--selected');
           });
         });
+
+        let card_flip_buttons = $$('.card__front-button', cell);
+        card_flip_buttons.forEach((button) => {
+          let parent_card = button.closest('.card');
+          button.onclick = function () {
+            parent_card.classList.toggle('card--selected');
+            parent_card.dataset.cardFlippedId = button.dataset.cardFlipId;
+          };
+        });
       });
     });
   }

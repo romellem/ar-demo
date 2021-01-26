@@ -7,13 +7,7 @@
     </div>
     {{#each numberOfARs as |id|}}
         <div class="ar__content">
-            <h5>Preview {{../num}} - AR {{id}}</h5>
-            <p>{{loremSentences}}</p>
-            <ul>
-                {{#each (randomRange 4)}}
-                    <li>{{loremSentence}}</li>
-                {{/each}}
-            </ul>
+            {{> partials/card num=../num id=id grades=(randomRange 4)}}
         </div>
     {{/each}}
 </div>

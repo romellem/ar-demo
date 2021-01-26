@@ -72,7 +72,6 @@
   }
 }
 
-// Tabs
 .tabs {
   &__labels {
     display: flex;
@@ -108,6 +107,49 @@
 
     @for $i from 1 through 10 {
       [data-tab-selected='#{$i}'] &:nth-child(#{$i + 1}) {
+        display: block;
+      }
+    }
+  }
+}
+
+.card {
+  perspective: 40rem;
+  overflow: hidden;
+
+  // Needed?
+  position: relative;
+
+  &__body {
+    transform-style: preserve-3d;
+    transition: 0.5s transform ease-in-out;
+
+    .card--selected & {
+      transform: rotateY(-180deg);
+    }
+  }
+
+  &__front,
+  &__back {
+    backface-visibility: hidden;
+  }
+
+  &__front {
+
+  }
+  &__back {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: rotateY(-180deg);
+  }
+
+  &__selection {
+    display: none;
+    @for $i from 1 through 10 {
+      [data-card-flipped-id="#{$i}"] &[data-grade-id="#{$i}"] {
         display: block;
       }
     }

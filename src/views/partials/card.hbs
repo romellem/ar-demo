@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card__body">
+        <div class="card__front">
+            <h5>Preview {{num}} - AR {{id}}</h5>
+            <p>{{loremSentences}}</p>
+            <ul>
+                {{#each (randomRange 3)}}
+                    <li>{{loremSentence}}</li>
+                {{/each}}
+            </ul>
+            {{#each grades as |grade|}}
+                <button class="card__front-button" data-card-flip-id="{{grade}}">Grade {{grade}}</button>
+            {{/each}}
+        </div>
+        <div class="card__back">
+            {{#each grades as |grade|}}
+                <div class="card__selection" data-grade-id="{{grade}}">
+                    <h5>Grade {{grade}}</h5>
+                    {{#each (randomRange 3 5)}}
+                        <p>{{loremSentences}}</p>
+                    {{/each}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
