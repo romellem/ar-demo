@@ -135,8 +135,11 @@
   }
 
   &__front {
-    // So we can position the `front-back-button`
-    // position: relative;
+    // Needed otherwise our positioned selection-back-button shows through after flipped
+    background: mix(cornflowerblue, white, 50%);
+
+    // Make room for back button
+    padding-bottom: 26px;
   }
 
   &__back {
@@ -153,12 +156,12 @@
 
   &__front-button,
   &__front-back-button,
-  &__back-back-button {
+  &__selection-back-button {
     cursor: pointer;
   }
 
   &__front-back-button,
-  &__back-back-button {
+  &__selection-back-button {
     position: absolute;
 
     // So it doesn't partially hide via overflow
@@ -169,6 +172,11 @@
   }
 
   &__selection {
+    position: relative;
+
+    // Make room for back button
+    padding-bottom: 26px;
+
     display: none;
     @for $i from 1 through 10 {
       [data-card-flipped-id="#{$i}"] &[data-grade-id="#{$i}"] {

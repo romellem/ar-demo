@@ -151,6 +151,10 @@ ready(() => {
             const parent_card_rect = parent_card.getBoundingClientRect();
             parent_card.style.height = `${parent_card_rect.height}px`;
 
+            // Save original height so we can use it when flipping back
+            // Is this bad for resopnsive stuff? Should I just remeasure?
+            parent_card.dataset.originalHeight = parent_card_rect.height;
+
             // Start rotation
             parent_card.classList.toggle('card--selected');
             parent_card.dataset.cardFlippedId = button.dataset.cardFlipId;
@@ -169,6 +173,31 @@ ready(() => {
             /**
              * @todo handle resizes
              */
+          };
+        });
+
+        let card_selection_back_buttons = $$('.card__selection-back-button', cell);
+        card_selection_back_buttons.forEach((button) => {
+          let parent_card = button.closest('.card');
+          button.onclick = function () {
+            // Revert height
+            const original_height = parent_card.dataset.originalHeight;
+            parent_card.style.height = `${original_height}px`;
+
+            // Start rotation
+            parent_card.classList.remove('card--selected');
+            
+
+            // Force a reflow to start the transition
+            void parent_card.offsetTop;
+
+            // Remove inline height
+            once(parent_card, 'transitionend', (e) => {
+              parent_card.style.height = '';
+
+              // Make it display: none
+              parent_card.removeAttribute('data-card-flipped-id');
+            });
           };
         });
       });
