@@ -1,0 +1,19 @@
+<div class="ar">
+    <div class="ar__preview">
+        <h5>Preview {{num}}</h5>
+        {{#each numberOfARs as |id|}}
+            <button class="ar__preview-button" data-ar="{{id}}">AR {{id}}</button>
+        {{/each}}
+    </div>
+    {{#each numberOfARs as |id|}}
+        <div class="ar__content">
+            <h5>AR {{id}}</h5>
+            <p>{{loremSentences}}</p>
+            <ul>
+                {{#each (randomRange 4)}}
+                    <li>{{loremSentence}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/each}}
+</div>

@@ -1,6 +1,6 @@
 import { wrapGrid } from 'animate-css-grid';
 
-import '../stylesheets/style.scss';
+import './css/index.scss';
 
 function ready(fn) {
   if (

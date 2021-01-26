@@ -1,0 +1,18 @@
+{{#extend "html/template"}}
+  {{#content "body"}}
+    <main>
+      <div class="tabs">
+        <div class="tabs__labels">
+          <div class="tabs__label tabs__label--blue" data-tab-label="1">Label 1</div>
+          <div class="tabs__label tabs__label--pink" data-tab-label="2">Label 2</div>
+        </div>
+        <div class="tabs__tab tabs__tab--blue" data-tab="1">
+          {{> partials/grid}}
+        </div>
+        <div class="tabs__tab tabs__tab--pink" data-tab="2">
+          {{> partials/grid}}
+        </div>
+      </div>
+    </main>
+  {{/content}}
+{{/extend}}

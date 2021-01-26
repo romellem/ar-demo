@@ -1,0 +1,8 @@
+<div class="grid">
+    {{#each (randomRange 6 9) as |num|}}
+        <div class="cell">
+            {{> partials/ar num=num numberOfARs=(randomRange 3)}}
+        </div>
+    {{/each}}
+</div>
+    
