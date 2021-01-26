@@ -18,7 +18,6 @@
 
 .cell {
   padding: 1em;
-  cursor: pointer;
 
   transition: background 0.3s ease-in-out;
   overflow: hidden;
@@ -32,9 +31,16 @@
   }
 }
 
-.selected {
-  // Span from the start to the end
-  grid-column: 1 / -1;
+.ar-preview {
+  h5 {
+    margin-top: 0;
+  }
+
+  &__button {
+    cursor: pointer;
+    display: block;
+    margin: 4px 0;
+  }
 }
 
 // Tabs
