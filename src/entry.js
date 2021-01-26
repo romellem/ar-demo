@@ -13,9 +13,9 @@ function ready(fn) {
 }
 
 /**
- * @param {Element} element 
- * @param {String} event_type 
- * @param {Function} callback 
+ * @param {Element} element
+ * @param {String} event_type
+ * @param {Function} callback
  * @returns {Function} Returns a 'destroy' function to immediately remove the event listener
  */
 const once = (element, event_type, callback) => {
@@ -128,6 +128,18 @@ ready(() => {
             $('.cell--selected')?.classList.remove('cell--selected');
             let parent_cell = button.closest('.cell');
             parent_cell.classList.add('cell--selected');
+          });
+        });
+
+        let front_back_buttons = $$('.card__front-back-button', cell);
+        front_back_buttons.forEach((button) => {
+          button.addEventListener('click', function (e) {
+            let parent_ar = button.closest('.ar');
+            parent_ar.removeAttribute('data-ar-selected');
+
+            // Close cell
+            let parent_cell = button.closest('.cell');
+            parent_cell.classList.remove('cell--selected');
           });
         });
 

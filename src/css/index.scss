@@ -135,8 +135,10 @@
   }
 
   &__front {
-
+    // So we can position the `front-back-button`
+    // position: relative;
   }
+
   &__back {
     position: absolute;
     top: 0;
@@ -144,10 +146,26 @@
     bottom: 0;
     left: 0;
     transform: rotateY(-180deg);
+
+    // Needed otherwise our positioned front-back-button shows through after flipped
+    background: mix(cornflowerblue, white, 50%);
   }
 
-  &__front-button {
+  &__front-button,
+  &__front-back-button,
+  &__back-back-button {
     cursor: pointer;
+  }
+
+  &__front-back-button,
+  &__back-back-button {
+    position: absolute;
+
+    // So it doesn't partially hide via overflow
+    right: 1px;
+    bottom: 1px;
+
+    backface-visibility: hidden;
   }
 
   &__selection {
