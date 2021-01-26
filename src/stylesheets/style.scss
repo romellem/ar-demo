@@ -19,15 +19,28 @@
 .cell {
   padding: 1em;
 
-  transition: background 0.3s ease-in-out;
+  transition: background 0.5s ease-in-out;
   overflow: hidden;
   position: relative;
 
+  &--selected {
+    // Span from the start to the end
+    grid-column: 1 / -1;
+  }
+
   .tabs__tab--blue & {
     background: mix(cornflowerblue, white, 70%);
+
+    &--selected {
+      background: mix(cornflowerblue, white, 50%);
+    }
   }
   .tabs__tab--pink & {
     background: mix(salmon, white, 70%);
+
+    &--selected {
+      background: mix(salmon, white, 50%);
+    }
   }
 }
 
@@ -37,7 +50,7 @@
   }
 
   &__preview {
-    [data-ar-show] & {
+    [data-ar-selected] & {
       display: none;
     }
   }
@@ -52,7 +65,7 @@
     display: none;
 
     @for $i from 1 through 10 {
-      [data-ar-selected="#{$i}"] &:nth-child(#{$i + 1}) {
+      [data-ar-selected='#{$i}'] &:nth-child(#{$i + 1}) {
         display: block;
       }
     }
@@ -82,7 +95,7 @@
     }
 
     @for $i from 1 through 10 {
-      [data-tab-selected="#{$i}"] &:nth-child(#{$i}) {
+      [data-tab-selected='#{$i}'] &:nth-child(#{$i}) {
         box-shadow: none;
         color: black;
       }
@@ -93,7 +106,7 @@
     display: none;
 
     @for $i from 1 through 10 {
-      [data-tab-selected="#{$i}"] &:nth-child(#{$i + 1}) {
+      [data-tab-selected='#{$i}'] &:nth-child(#{$i + 1}) {
         display: block;
       }
     }

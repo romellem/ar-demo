@@ -66,7 +66,7 @@ ready(() => {
   function wrapGrids() {
     const grids = $$('.grid');
     grids.forEach((grid) => {
-      wrapGrid(grid, { duration: 1000 });
+      wrapGrid(grid, { duration: 500 });
 
       const cells = $$('.cell', grid);
       cells.forEach((cell) => {
@@ -75,9 +75,14 @@ ready(() => {
           button.addEventListener('click', function (e) {
             let ars = $$('.ar');
             let ar_id = this.dataset.ar;
-            let parent = button.closest('.ar');
+            let parent_ar = button.closest('.ar');
             ars.forEach(el => el.removeAttribute('data-ar-selected'));
-            parent.setAttribute('data-ar-selected', ar_id);
+            parent_ar.setAttribute('data-ar-selected', ar_id);
+
+            // Animate cell
+            $('.cell--selected')?.classList.remove('cell--selected');
+            let parent_cell = button.closest('.cell');
+            parent_cell.classList.add('cell--selected');
           });
         });
       });
