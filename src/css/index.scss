@@ -135,11 +135,16 @@
   }
 
   &__front {
-    // Needed otherwise our positioned selection-back-button shows through after flipped
-    background: mix(cornflowerblue, white, 50%);
-
     // Make room for back button
     padding-bottom: 26px;
+
+    // Needed otherwise our positioned selection-back-button shows through after flipped
+    .tabs__tab--blue & {
+      background: mix(cornflowerblue, white, 50%);
+    }
+    .tabs__tab--pink & {
+      background: mix(salmon, white, 50%);
+    }
   }
 
   &__back {
@@ -150,8 +155,13 @@
     left: 0;
     transform: rotateY(-180deg);
 
-    // Needed otherwise our positioned front-back-button shows through after flipped
-    background: mix(cornflowerblue, white, 50%);
+    // Needed otherwise our positioned selection-back-button shows through after flipped
+    .tabs__tab--blue & {
+      background: mix(cornflowerblue, white, 50%);
+    }
+    .tabs__tab--pink & {
+      background: mix(salmon, white, 50%);
+    }
   }
 
   &__front-button,
@@ -164,9 +174,9 @@
   &__selection-back-button {
     position: absolute;
 
-    // So it doesn't partially hide via overflow
-    right: 1px;
-    bottom: 1px;
+    // So it doesn't partially hide via weird overflow bug (actually this doesn't affect it)
+    right: 2px;
+    bottom: 2px;
 
     backface-visibility: hidden;
   }
