@@ -1,5 +1,53 @@
-// import { qs, qsa, $on, $delegate } from './utils';
+import { wrapGrid } from 'animate-css-grid';
 
 import '../stylesheets/style.scss';
 
-// console.log('Hello!');
+const $ = (s, c) => (c || document).querySelector(s);
+const $$ = (s, c) => (c || document).querySelector(s);
+
+// const grid = $('.grid');
+
+// $$('.cell').forEach(cell => cell.addEventListener('click', function() {
+//   if (this.classList.contains('selected')) {
+//     this.classList.remove('selected');
+//   } else {
+//     $('.selected')?.classList.remove('selected');
+//     this.classList.add('selected');
+//   }
+// }));
+
+// // {
+// //   // int: default is 0 ms
+// //   stagger: 100,
+// //   // int: default is 250 ms
+// //   duration: 500,
+// //   // string: default is 'easeInOut'
+// //   easing: 'backInOut',
+// //   // function: called with list of elements about to animate
+// //   onStart: (animatingElementList)=> {},
+// //   // function: called with list of elements that just finished animating
+// //   // cancelled animations will not trigger onEnd
+// //   onEnd: (animatingElementList)=> {}
+// // }
+
+// window.animateCSSGrid.wrapGrid(grid, {
+//   duration: 300,
+// });
+
+function initTabs() {
+  const tabs = $$('.tabs');
+  tabs.forEach((tab_container) => {
+    let labels = $$('.tabs__label', tab_container);
+    labels.forEach((label) => {
+      label.onclick = function () {
+        labels.forEach((l) => (l.style.borderBottom = ''));
+        this.style.borderBottom = 'none';
+        let corresponding_tab = $(`[data-tab="${this.dataset.tabLabel}"]`, tab_container);
+        $$('.tabs__tab', tab_container).forEach((t) => (t.style.display = ''));
+        corresponding_tab.style.display = 'block';
+      };
+    });
+  });
+}
+
+initTabs();

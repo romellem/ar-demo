@@ -1,31 +1,63 @@
 @import '~normalize.css/normalize.css';
-@import './base';
-@import './media';
-@import './fonts';
 
-// custom styles
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 4px;
 
-html {
-  height: 100%;
+  border: 1px solid black;
+  border-top: none;
 }
 
-body {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100%;
-}
+.cell {
+  padding: 1em;
+  cursor: pointer;
 
-a {
+  transition: background 0.3s ease-in-out;
+  overflow: hidden;
   position: relative;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
 
-  img {
-    display: inline-block;
-    vertical-align: middle;
-    width: 80px;
+  .tabs__tab--blue & {
+    background: cornflowerblue;
   }
+  .tabs__tab--pink & {
+    background: pink;
+  }
+}
+
+.selected {
+  // Span from the start to the end
+  grid-column: 1 / -1;
+}
+
+// Tabs
+.tabs {
+  &__labels {
+    display: flex;
+  }
+  &__label {
+    padding: 0.5em;
+    cursor: pointer;
+    border-bottom: 1px solid black;
+
+    &--blue {
+      background: cornflowerblue;
+    }
+    &--pink {
+      background: pink;
+    }
+
+    & + & {
+      margin-left: 4px;
+    }
+  }
+  &__tab {
+    display: none;
+  }
+}
+
+// Misc
+main {
+  max-width: 500px;
+  margin: 0 auto;
 }

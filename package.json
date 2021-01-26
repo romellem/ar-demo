@@ -44,6 +44,7 @@
     "mini-css-extract-plugin": "^1.0.0",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
+    "postcss": "^8.1.1",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-loader": "^4.0.4",
     "prettier": "^2.1.2",
@@ -62,8 +63,7 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.2.0",
-    "webpack-stats-plugin": "0.3.2",
-    "postcss": "^8.1.1"
+    "webpack-stats-plugin": "0.3.2"
   },
   "browserslist": {
     "production": [
@@ -79,7 +79,8 @@
     ]
   },
   "husky": {
-    "hooks": {
+    "// Comments out hooks for now": true,
+    "// hooks": {
       "pre-commit": "lint-staged",
       "pre-push": "yarn check-eslint-config && yarn lint-code && yarn check-stylelint-config && yarn lint-style"
     }
@@ -93,5 +94,8 @@
       "stylelint --fix",
       "git add"
     ]
+  },
+  "dependencies": {
+    "animate-css-grid": "^1.4.3"
   }
 }
