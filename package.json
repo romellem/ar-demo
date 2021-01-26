@@ -1,8 +1,8 @@
 {
-  "name": "webpack-handlebars-static",
+  "name": "ar-demo",
   "version": "1.0.0",
-  "description": "A webpack static site builder using handlebars templates, sass and babel.",
-  "main": "index.js",
+  "description": "",
+  "private": true,
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server",
     "prestart": "npm run clean",
@@ -11,8 +11,8 @@
     "clean": "rimraf build generated",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mitch Heddles <mitchell.heddles@gmail.com>",
-  "license": "MIT",
+  "author": "Matt Wade",
+  "license": "UNLICENSED",
   "browserslist": [
     "> 1%",
     "last 2 versions",
