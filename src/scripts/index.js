@@ -56,14 +56,30 @@ ready(() => {
         label.onclick = function () {
           let id = this.dataset.tabLabel;
           tab_container.dataset.tabSelected = id;
-
-          // let corresponding_tab = $(`[data-tab="${this.dataset.tabLabel}"]`, tab_container);
-          // $$('.tabs__tab', tab_container).forEach((t) => (t.style.display = ''));
-          // corresponding_tab.style.display = 'block';
         };
       });
     });
   }
 
   initTabs();
+
+  function wrapGrids() {
+    const grids = $$('.grid');
+    grids.forEach((grid) => {
+      wrapGrid(grid, { duration: 1000 });
+
+      const cells = $$('.cell', grid);
+      cells.forEach((cell) => {
+        let preview_buttons = $$('.ar__preview-button', cell);
+        preview_buttons.forEach((button) => {
+          button.addEventListener('click', function (e) {
+            let parent = button.closest('.ar');
+            parent.classList.add('ar--show-content');
+          });
+        });
+      });
+    });
+  }
+
+  wrapGrids();
 });

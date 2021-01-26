@@ -31,15 +31,31 @@
   }
 }
 
-.ar-preview {
+.ar {
   h5 {
     margin-top: 0;
   }
 
-  &__button {
+  &__preview {
+    [data-ar-show] & {
+      display: none;
+    }
+  }
+
+  &__preview-button {
     cursor: pointer;
     display: block;
     margin: 4px 0;
+  }
+
+  &__content {
+    display: none;
+
+    @for $i from 1 through 10 {
+      [data-ar-selected="#{$i}"] &:nth-child(#{$i + 1}) {
+        display: block;
+      }
+    }
   }
 }
 
