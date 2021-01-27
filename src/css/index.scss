@@ -2,7 +2,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-gap: 4px;
 
   padding: 0.5em;
@@ -198,6 +198,6 @@
 
 // Misc
 main {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
 }
