@@ -158,7 +158,6 @@ ready(() => {
 
             // Start rotation
             parent_card.classList.remove('card--selected');
-            
 
             // Force a reflow to start the transition
             void parent_card.offsetTop;
