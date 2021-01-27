@@ -1,6 +1,4 @@
 import { wrapGrid } from 'animate-css-grid';
-// window.animateCSSGrid.wrapGrid
-
 import './css/index.scss';
 
 const HEADER_AND_PADDING_AND_GAP = 60 + 16 + 4;
@@ -13,11 +11,9 @@ const wrapGridConfigured = (grid, tab) => {
       const parent_cell_rect = selected_cell.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const top = parent_cell_rect.top + scrollTop - HEADER_AND_PADDING_AND_GAP;
-      window.scrollTo({
-        left: 0,
-        top: top,
-        behavior: 'smooth',
-      });
+
+      // iOS doesn't support scroll options
+      window.scrollTo(0, top);
     },
   });
 };
