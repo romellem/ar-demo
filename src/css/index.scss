@@ -181,10 +181,6 @@ main {
   margin: 10px auto;
 }
 
-body {
-  padding-bottom: 100px;
-}
-
 .sticky-header {
   z-index: 1;
   position: sticky;
@@ -207,13 +203,14 @@ body {
   }
 }
 
+$footer-height: 140px;
 .sticky-footer {
   z-index: 2;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 140px;
+  height: $footer-height;
   padding: 0.5em;
 
   background: white;
@@ -227,4 +224,8 @@ body {
     margin: 0 auto;
     flex: 1;
   }
+}
+
+body {
+  padding-bottom: $footer-height + 10px;
 }
