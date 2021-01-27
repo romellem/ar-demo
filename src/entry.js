@@ -3,6 +3,25 @@ import { wrapGrid } from 'animate-css-grid';
 
 import './css/index.scss';
 
+const HEADER_AND_PADDING_AND_GAP = 60 + 16 + 4;
+
+const wrapGridConfigured = (grid, tab) => {
+  return wrapGrid(grid, {
+    duration: 500,
+    onEnd: () => {
+      const selected_cell = tab.querySelector('.cell--selected');
+      const parent_cell_rect = selected_cell.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const top = parent_cell_rect.top + scrollTop - HEADER_AND_PADDING_AND_GAP;
+      window.scrollTo({
+        left: 0,
+        top: top,
+        behavior: 'smooth',
+      });
+    },
+  });
+};
+
 function ready(fn) {
   if (
     document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading'
@@ -53,7 +72,8 @@ ready(() => {
         const tab_label_id = label.dataset.tabLabel;
 
         const grid = $(`[data-tab="${tab_label_id}"] .grid`, tab);
-        const { unwrapGrid, forceGridAnimation } = wrapGrid(grid, { duration: 500 });
+        const { unwrapGrid, forceGridAnimation } = wrapGridConfigured(grid, tab);
+
         wrapped_grids.push({
           grid,
           unwrapGrid,
@@ -62,7 +82,7 @@ ready(() => {
 
         const rewrapGrid = (grid) => {
           let [wrapped_grid_reference] = wrapped_grids.filter((ref) => ref.grid === grid);
-          const { unwrapGrid, forceGridAnimation } = wrapGrid(grid, { duration: 500 });
+          const { unwrapGrid, forceGridAnimation } = wrapGridConfigured(grid, tab);
           wrapped_grid_reference.unwrapGrid = unwrapGrid;
           wrapped_grid_reference.forceGridAnimation = forceGridAnimation;
         };
@@ -100,6 +120,10 @@ ready(() => {
             $('.cell--selected')?.classList.remove('cell--selected');
             let parent_cell = button.closest('.cell');
             parent_cell.classList.add('cell--selected');
+
+            // setTimeout(() => once(parent_cell, 'transitionend', () => {
+
+            // }), 50);
           });
         });
 
