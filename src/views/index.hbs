@@ -1,5 +1,9 @@
 {{#extend "html/template"}}
   {{#content "body"}}
+    <header class="sticky-header">
+      <div class="sticky-header__inner">Fixed Header</div>
+    </header>
+
     <main>
       <div class="tabs">
         <div class="tabs__labels">
@@ -14,5 +18,12 @@
         </div>
       </div>
     </main>
+
+    <footer class="sticky-footer">
+      <div class="sticky-footer__inner">
+        <div>Fixed footer</div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Que sit dolorum saepe! Ullam illum dignissimos impedit et, alias itaque quis ut excepturi repellendus doloremque veniam aspernatur exercitationem explicabo? Dolet, quis!</p>
+      </div>
+    </footer>
   {{/content}}
 {{/extend}}
