@@ -1,5 +1,8 @@
 import { wrapGrid } from 'animate-css-grid';
 import './css/index.scss';
+import smoothscroll from 'smoothscroll-polyfill';
+
+smoothscroll.polyfill();
 
 const HEADER_AND_PADDING_AND_GAP = 60 + 16 + 4;
 
@@ -12,8 +15,11 @@ const wrapGridConfigured = (grid, tab) => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const top = parent_cell_rect.top + scrollTop - HEADER_AND_PADDING_AND_GAP;
 
-      // iOS doesn't support scroll options
-      window.scrollTo(0, top);
+      window.scrollTo({
+        left: 0,
+        top,
+        behavior: 'smooth',
+      });
     },
   });
 };

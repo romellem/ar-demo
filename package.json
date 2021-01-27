@@ -21,7 +21,8 @@
   "dependencies": {
     "animate-css-grid": "^1.4.3",
     "faker": "^4.1.0",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.0",
