@@ -19,7 +19,6 @@
 .cell {
   padding: 1em;
 
-  // transition: background 0.5s ease-in-out;
   overflow: hidden;
   position: relative;
 
@@ -28,25 +27,11 @@
     grid-column: 1 / -1;
   }
 
-  // All divs should have a solid background color
-  // Mostly needed for our positioned back-buttons to not show through flipped sides
-  // div {
-  //   background: inherit;
-  // }
-
   .tabs__tab--blue & {
     background: mix(cornflowerblue, white, 70%);
-
-    // &--selected {
-    //   background: mix(cornflowerblue, white, 50%);
-    // }
   }
   .tabs__tab--pink & {
     background: mix(salmon, white, 70%);
-
-    // &--selected {
-    //   background: mix(salmon, white, 50%);
-    // }
   }
 }
 
