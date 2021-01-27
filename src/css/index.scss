@@ -28,6 +28,12 @@
     grid-column: 1 / -1;
   }
 
+  // All divs should have a solid background color
+  // Mostly needed for our positioned back-buttons to not show through flipped sides
+  div {
+    background: inherit;
+  }
+
   .tabs__tab--blue & {
     background: mix(cornflowerblue, white, 70%);
 
@@ -137,14 +143,6 @@
   &__front {
     // Make room for back button
     padding-bottom: 26px;
-
-    // Needed otherwise our positioned selection-back-button shows through after flipped
-    .tabs__tab--blue & {
-      background: mix(cornflowerblue, white, 50%);
-    }
-    .tabs__tab--pink & {
-      background: mix(salmon, white, 50%);
-    }
   }
 
   &__back {
@@ -154,14 +152,6 @@
     bottom: 0;
     left: 0;
     transform: rotateY(-180deg);
-
-    // Needed otherwise our positioned selection-back-button shows through after flipped
-    .tabs__tab--blue & {
-      background: mix(cornflowerblue, white, 50%);
-    }
-    .tabs__tab--pink & {
-      background: mix(salmon, white, 50%);
-    }
   }
 
   &__front-button,
