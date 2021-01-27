@@ -122,10 +122,6 @@ ready(() => {
             $('.cell--selected')?.classList.remove('cell--selected');
             let parent_cell = button.closest('.cell');
             parent_cell.classList.add('cell--selected');
-
-            // setTimeout(() => once(parent_cell, 'transitionend', () => {
-
-            // }), 50);
           });
         });
 

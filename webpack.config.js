@@ -11,6 +11,8 @@ const { makeDataReplacements, registerHandlersHelpers } = require('./webpack.hel
 
 const mode = process.env.NODE_ENV || 'production';
 const PORT = process.env.PORT || 3000;
+console.log('MODE', { mode })
+
 
 const sourceDir = path.join(__dirname, 'src');
 const templateDir = path.join(__dirname, 'generated');
@@ -124,7 +126,7 @@ module.exports = {
       use: [{ loader: 'css-loader', options: { minimize: isProd } }],
     }),
   ].concat(isProd ? prodPlugins : []),
-  devtool: 'inline-source-map',
+  ...(isProd ? null : { devtool: 'inline-source-map' }),
   devServer: {
     contentBase: buildDir,
     open: true,
