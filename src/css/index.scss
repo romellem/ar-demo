@@ -4,9 +4,12 @@ html {
   scroll-behavior: smooth;
 }
 
+$container-max-width: 600px;
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  // 2 col on "mobile"
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 4px;
 
   padding: 0.5em;
@@ -17,6 +20,11 @@ html {
   }
   .tabs__tab--pink & {
     background: salmon;
+  }
+
+  // 3 col on "desktop"
+  @media (min-width: #{$container-max-width}) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -177,7 +185,7 @@ html {
 
 // Misc
 main {
-  max-width: 600px;
+  max-width: $container-max-width;
   margin: 10px auto;
 }
 
