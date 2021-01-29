@@ -176,7 +176,7 @@ $container-max-width: 600px;
 
     display: none;
     @for $i from 1 through 10 {
-      [data-card-flipped-id="#{$i}"] &[data-grade-id="#{$i}"] {
+      [data-card-flipped-id='#{$i}'] &[data-grade-id='#{$i}'] {
         display: block;
       }
     }
