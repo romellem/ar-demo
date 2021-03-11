@@ -4,6 +4,10 @@ html {
   scroll-behavior: smooth;
 }
 
+$max-tabs-within-grid: 10;
+$max-ars-buttons-within-a-cell: 10;
+$max-grades-within-ar-card: 10;
+
 $container-max-width: 600px;
 
 .grid {
@@ -67,7 +71,7 @@ $container-max-width: 600px;
   &__content {
     display: none;
 
-    @for $i from 1 through 10 {
+    @for $i from 1 through $max-ars-that-live-in-a-cell {
       [data-ar-selected='#{$i}'] &:nth-child(#{$i + 1}) {
         display: block;
       }
@@ -96,7 +100,7 @@ $container-max-width: 600px;
       margin-left: 4px;
     }
 
-    @for $i from 1 through 10 {
+    @for $i from 1 through $max-tabs-within-grid {
       [data-tab-selected='#{$i}'] &:nth-child(#{$i}) {
         box-shadow: none;
         color: black;
@@ -108,7 +112,7 @@ $container-max-width: 600px;
   &__tab {
     display: none;
 
-    @for $i from 1 through 10 {
+    @for $i from 1 through $max-tabs-within-grid {
       [data-tab-selected='#{$i}'] &:nth-child(#{$i + 1}) {
         display: block;
       }
@@ -175,7 +179,7 @@ $container-max-width: 600px;
     padding-bottom: 26px;
 
     display: none;
-    @for $i from 1 through 10 {
+    @for $i from 1 through $max-grades-within-ar-card {
       [data-card-flipped-id='#{$i}'] &[data-grade-id='#{$i}'] {
         display: block;
       }
