@@ -71,7 +71,7 @@ $container-max-width: 600px;
   &__content {
     display: none;
 
-    @for $i from 1 through $max-ars-that-live-in-a-cell {
+    @for $i from 1 through $max-ars-buttons-within-a-cell {
       [data-ar-selected='#{$i}'] &:nth-child(#{$i + 1}) {
         display: block;
       }
