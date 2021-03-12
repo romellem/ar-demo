@@ -48,6 +48,27 @@ function randomRange(min, max, options) {
     .map((_, i) => i + 1);
 }
 
+function range(size, options) {
+  if (typeof size !== 'number') {
+    size = 0;
+  }
+
+  return Array(size).fill().map((_, i) => i + 1);
+}
+
+/**
+ * @param {Array} list - Returns the size of an array
+ */
+function sizeOf(...args) {
+  return args
+    .slice(0, -1)
+    .reduce(
+      (sum, collection) =>
+        (Array.isArray(collection) ? collection.length : Object.keys(collection).length) + sum,
+      0,
+    );
+}
+
 /**
  * Conveninence function to generate lorem ipsum words
  * @param {int} num Number of words to create.
@@ -94,7 +115,7 @@ function loremSentence(wordCount) {
 
 /**
  * Use math operators in hbs partials
- * i.e. {{math @index "+" 5}} will return index value incremented by 5
+ * @example {{math @index "+" 5}} will return index value incremented by 5
  *
  * @param {number} leftValue ex. @index
  * @param {string} operator basic math operator "+", "-", "*", "/", "%"
@@ -114,15 +135,41 @@ function math(leftValue, operator, rightValue) {
   }[operator];
 }
 
+/**
+ * To be used as a nested helper within an `#if` helper.
+ * @example
+ *     {{#if (gt someVar 1)}}`someVar` is greater than one{{else}}`someVar` is not greater than one{{/if}}
+ * @param {*} left Value to compare on the left side
+ * @param {*} right Value to compare on the right side
+ */
+function gt(left, right) {
+  return left > right;
+}
+function gte(left, right) {
+  return left >= right;
+}
+function lt(left, right) {
+  return left < right;
+}
+function lte(left, right) {
+  return left <= right;
+}
+
 function registerHandlersHelpers(Handlebars) {
   Handlebars.registerHelper('equal', _handlebarsEqualHelper);
   Handlebars.registerHelper('set', _handlebarsVariablesHelper);
   Handlebars.registerHelper('randomRange', randomRange);
+  Handlebars.registerHelper('range', range);
   Handlebars.registerHelper('loremWords', loremWords);
   Handlebars.registerHelper('loremWord', loremWord);
   Handlebars.registerHelper('loremSentences', loremSentences);
   Handlebars.registerHelper('loremSentence', loremSentence);
   Handlebars.registerHelper('math', math);
+  Handlebars.registerHelper('sizeOf', sizeOf);
+  Handlebars.registerHelper('gt', gt);
+  Handlebars.registerHelper('gte', gte);
+  Handlebars.registerHelper('lt', lt);
+  Handlebars.registerHelper('lte', lte);
 
   handlebarsLayouts.register(Handlebars);
 }
