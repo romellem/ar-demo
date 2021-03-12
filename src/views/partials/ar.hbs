@@ -7,7 +7,7 @@
     </div>
     {{#each numberOfARs as |id|}}
         <div class="ar__content">
-            {{> partials/card num=../num id=id grades=(randomRange 4)}}
+            {{> partials/card num=../num id=id grades=(randomRange 4) totalARs=(sizeOf numberOfARs)}}
         </div>
     {{/each}}
 </div>

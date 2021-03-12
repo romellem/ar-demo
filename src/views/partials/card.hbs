@@ -12,6 +12,14 @@
                 <button class="card__front-button" data-card-flip-id="{{grade}}">Grade {{grade}}</button>
             {{/each}}
             <button class="card__front-back-button">&#8634;</button>
+
+            {{#if (gt totalARs 1)}}
+            <div class="card__other-ars">
+                {{#each (range (math totalARs "-" 1))}}
+                <button></button>
+                {{/each}}
+            </div>
+            {{/if}}
         </div>
         <div class="card__back">
             {{#each grades as |grade|}}
