@@ -1,7 +1,12 @@
 <div class="grid" data-grid-id="{{tabId}}">
     {{#each (randomRange 6 9) as |num|}}
         <div class="cell">
-            {{> partials/ar num=num numberOfARs=(randomRange 4)}}
+            {{#ifEquals num 4}}
+                {{! Force one (and one only) to have 4 ARs}}
+                {{> partials/ar num=num numberOfARs=(range 4)}}
+            {{else}}
+                {{> partials/ar num=num numberOfARs=(randomRange 3)}}
+            {{/ifEquals}}
         </div>
     {{/each}}
 </div>
