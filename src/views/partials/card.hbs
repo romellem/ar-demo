@@ -13,10 +13,16 @@
             {{/each}}
             <button class="card__front-back-button">&#8634;</button>
 
-            {{#if (gt totalARs 1)}}
+            {{#if (gt numberOfARs.length 1)}}
             <div class="card__other-ars">
-                {{#each (range (math totalARs "-" 1))}}
-                <button></button>
+                {{#each numberOfARs as |arId|}}
+                    {{#ifEquals arId ../id}}
+                        {{! Do not output the same AR button }}
+                    {{else}}
+                        {{! "join" BRs to buttons }}
+                        {{#if (gt @index 0)}}<br>{{/if}}
+                        <button data-ar="{{arId}}">AR {{arId}}</button>
+                    {{/ifEquals}}
                 {{/each}}
             </div>
             {{/if}}

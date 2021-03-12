@@ -57,19 +57,6 @@ function range(size, options) {
 }
 
 /**
- * @param {Array} list - Returns the size of an array
- */
-function sizeOf(...args) {
-  return args
-    .slice(0, -1)
-    .reduce(
-      (sum, collection) =>
-        (Array.isArray(collection) ? collection.length : Object.keys(collection).length) + sum,
-      0,
-    );
-}
-
-/**
  * Conveninence function to generate lorem ipsum words
  * @param {int} num Number of words to create.
  * @param {bool} [upperCase] When true
@@ -155,6 +142,17 @@ function lte(left, right) {
   return left <= right;
 }
 
+/**
+ * 
+ * @param {any} a
+ * @param {any} b
+ * @param {Object} options 
+ */
+function ifEquals(a, b, options) {
+  if (a === b) return options.fn(this);
+  return options.inverse(this);
+}
+
 function registerHandlersHelpers(Handlebars) {
   Handlebars.registerHelper('equal', _handlebarsEqualHelper);
   Handlebars.registerHelper('set', _handlebarsVariablesHelper);
@@ -165,11 +163,11 @@ function registerHandlersHelpers(Handlebars) {
   Handlebars.registerHelper('loremSentences', loremSentences);
   Handlebars.registerHelper('loremSentence', loremSentence);
   Handlebars.registerHelper('math', math);
-  Handlebars.registerHelper('sizeOf', sizeOf);
   Handlebars.registerHelper('gt', gt);
   Handlebars.registerHelper('gte', gte);
   Handlebars.registerHelper('lt', lt);
   Handlebars.registerHelper('lte', lte);
+  Handlebars.registerHelper('ifEquals', ifEquals);
 
   handlebarsLayouts.register(Handlebars);
 }
