@@ -68,6 +68,11 @@ $container-max-width: 600px;
     margin: 4px 0;
   }
 
+  &__other-preview-button {
+    cursor: pointer;
+    margin: 4px 0;
+  }
+
   &__content {
     display: none;
 

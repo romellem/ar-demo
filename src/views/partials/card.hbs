@@ -4,7 +4,7 @@
             <h5>Preview {{num}} - AR {{id}}</h5>
             <p>{{loremSentences}}</p>
             <ul>
-                {{#each (randomRange 3)}}
+                {{#each (randomRange 4)}}
                     <li>{{loremSentence}}</li>
                 {{/each}}
             </ul>
@@ -21,7 +21,7 @@
                     {{else}}
                         {{! "join" BRs to buttons }}
                         {{#if (gt @index 0)}}<br>{{/if}}
-                        <button data-ar="{{arId}}">AR {{arId}}</button>
+                        <button class="ar__other-preview-button" data-ar="{{arId}}">AR {{arId}}</button>
                     {{/ifEquals}}
                 {{/each}}
             </div>

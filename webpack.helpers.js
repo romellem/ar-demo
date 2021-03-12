@@ -84,8 +84,7 @@ function loremWord(...args) {
  */
 function loremSentences(num) {
   if (typeof num !== 'number') {
-    // Use default num count in Faker
-    num = undefined;
+    num = fakerLib.random.number({ min: 3, max: 12 });
   }
 
   return fakerLib.lorem.sentences(num);

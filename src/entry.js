@@ -102,14 +102,12 @@ ready(() => {
     });
   }
 
-  initTabs();
-
   function wrapGrids() {
     const grids = $$('.grid');
     grids.forEach((grid) => {
       const cells = $$('.cell', grid);
       cells.forEach((cell) => {
-        let preview_buttons = $$('.ar__preview-button', cell);
+        let preview_buttons = $$('[data-ar]', cell);
         preview_buttons.forEach((button) => {
           button.addEventListener('click', function (e) {
             let ars = $$('.ar');
@@ -197,5 +195,6 @@ ready(() => {
     });
   }
 
+  initTabs();
   wrapGrids();
 });
