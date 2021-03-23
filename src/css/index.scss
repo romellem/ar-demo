@@ -149,6 +149,10 @@ $container-max-width: 600px;
   &__front {
     // Make room for back button
     padding-bottom: 26px;
+    
+    // Move to GPU to fix FireFox `backface-visibility` bug
+    // @see https://stackoverflow.com/a/32421734
+    transform: rotateY(0deg);
   }
 
   &__back {
